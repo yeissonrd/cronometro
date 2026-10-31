@@ -1,0 +1,297 @@
+/* Estilo formal oscuro: grises neutros y un solo color de acento */
+:root {
+  --fondo: #111317;
+  --superficie: #1a1d23;
+  --borde: #2c313a;
+  --borde-hover: #3d4450;
+  --texto: #e6e8eb;
+  --secundario: #9199a5;
+  --acento: #8fb3e0;
+  --acento-fuerte: #2e4f78;
+  --acento-hover: #3a6091;
+  --acento-suave: rgba(143, 179, 224, 0.12);
+  --exito: #7cc29b;
+  --exito-suave: rgba(124, 194, 155, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 1040px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ---------- Encabezado ---------- */
+.encabezado {
+  border-bottom: 1px solid var(--borde);
+  padding-bottom: 16px;
+}
+
+.encabezado h1 {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--acento);
+}
+
+.encabezado p {
+  margin-top: 6px;
+  color: var(--secundario);
+}
+
+/* ---------- Tablero ---------- */
+.tablero {
+  display: grid;
+  grid-template-columns: auto repeat(3, 1fr);
+  align-items: center;
+  gap: 24px;
+  padding: 32px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Controles ---------- */
+.controles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-play {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: none;
+  background: var(--acento-fuerte);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-play:hover {
+  background: var(--acento-hover);
+}
+
+.btn-play:active {
+  transform: scale(0.96);
+}
+
+.btn-play:focus-visible,
+.btn-reiniciar:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 3px;
+}
+
+/* Triángulo de play */
+.btn-play .icono {
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  border-left: 21px solid #ffffff;
+}
+
+/* Dos barras de pausa */
+.btn-play.pausa {
+  background: #4a515c;
+}
+
+.btn-play.pausa .icono {
+  margin-left: 0;
+  width: 20px;
+  height: 24px;
+  border: none;
+  border-left: 7px solid #ffffff;
+  border-right: 7px solid #ffffff;
+}
+
+.btn-reiniciar {
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  color: var(--acento);
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.btn-reiniciar:hover {
+  background: var(--acento-suave);
+  border-color: var(--borde-hover);
+}
+
+/* ---------- Cronómetro ---------- */
+.crono {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 12px;
+  border-left: 1px solid var(--borde);
+}
+
+.limite {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--secundario);
+}
+
+.limite span {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--texto);
+}
+
+.limite input {
+  width: 2.8em;
+  padding: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.95rem;
+  text-align: center;
+  color: var(--texto);
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Ocultar las flechitas del input number */
+.limite input::-webkit-outer-spin-button,
+.limite input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.limite input:hover:not(:disabled) {
+  border-color: var(--borde-hover);
+}
+
+.limite input:focus {
+  border-color: var(--acento);
+  box-shadow: 0 0 0 3px var(--acento-suave);
+}
+
+.limite input:disabled {
+  color: var(--secundario);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.display {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--texto);
+}
+
+.barra {
+  width: 100%;
+  max-width: 180px;
+  height: 4px;
+  background: var(--borde);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.barra span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--acento);
+  transition: width 0.3s linear;
+}
+
+/* Estado como etiqueta discreta */
+.estado {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.crono[data-estado='pausa'] .estado {
+  color: var(--secundario);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.crono[data-estado='ejecutando'] .estado {
+  color: var(--acento);
+  background: var(--acento-suave);
+}
+
+.crono[data-estado='fin'] .estado {
+  color: var(--exito);
+  background: var(--exito-suave);
+}
+
+.crono[data-estado='fin'] .display {
+  color: var(--exito);
+}
+
+/* ---------- Mensaje global ---------- */
+.mensaje-global {
+  text-align: center;
+  font-weight: 600;
+  color: var(--exito);
+  min-height: 1.5em;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.mensaje-global.visible {
+  opacity: 1;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .tablero {
+    grid-template-columns: 1fr;
+    padding: 24px 16px;
+  }
+
+  .controles {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .crono {
+    border-left: none;
+    border-top: 1px solid var(--borde);
+  }
+}

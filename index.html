@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tres Cronómetros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="contenedor">
+    <header class="encabezado">
+      <h1>Cronómetros</h1>
+      <p>Un solo botón inicia los tres. Cada uno cuenta hacia atrás desde su tiempo programado hasta llegar a 00:00.</p>
+    </header>
+
+    <section class="tablero">
+      <div class="controles">
+        <button id="btnPlay" class="btn-play" aria-label="Iniciar cronómetros">
+          <span class="icono"></span>
+        </button>
+        <button id="btnReiniciar" class="btn-reiniciar">Reiniciar</button>
+      </div>
+
+      <article class="crono" data-nombre="Cronómetro 1" data-limite="30" style="--neon: #00f0ff;">
+        <p class="limite">Tiempo.
+          <input class="minutos" type="number" min="0" max="59" aria-label="Minutos"><span>:</span><input class="segundos" type="number" min="0" max="59" aria-label="Segundos">
+        </p>
+        <div class="display">00:00</div>
+        <div class="barra"><span></span></div>
+        <p class="estado">En Pausa</p>
+      </article>
+
+      <article class="crono" data-nombre="Cronómetro 2" data-limite="65" style="--neon: #ff2bd6;">
+        <p class="limite">Tiempo.
+          <input class="minutos" type="number" min="0" max="59" aria-label="Minutos"><span>:</span><input class="segundos" type="number" min="0" max="59" aria-label="Segundos">
+        </p>
+        <div class="display">00:00</div>
+        <div class="barra"><span></span></div>
+        <p class="estado">En Pausa</p>
+      </article>
+
+      <article class="crono" data-nombre="Cronómetro 3" data-limite="50" style="--neon: #39ff14;">
+        <p class="limite">Tiempo.
+          <input class="minutos" type="number" min="0" max="59" aria-label="Minutos"><span>:</span><input class="segundos" type="number" min="0" max="59" aria-label="Segundos">
+        </p>
+        <div class="display">00:00</div>
+        <div class="barra"><span></span></div>
+        <p class="estado">En Pausa</p>
+      </article>
+    </section>
+
+    <p id="mensajeGlobal" class="mensaje-global" aria-live="polite"></p>
+
+    <section class="consola">
+      <h2>Registro del Event Loop</h2>
+      <p class="leyenda">
+        <span class="etiqueta tarea">TAREA</span> setTimeout (macrotarea)
+        <span class="etiqueta micro">MICRO</span> Promise / queueMicrotask
+      </p>
+      <ol id="registro"></ol>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
